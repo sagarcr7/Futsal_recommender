@@ -6,13 +6,11 @@ if(!isset($_SESSION['message']))
 
 if(isset($_SESSION['err'])){
   ?>
-  <div class="isa_info">
-    <i class="fa fa-info-circle"></i>
   <script type="text/javascript">
     var Err = "<?php echo $_SESSION['err']?>";
     alert(Err);
   </script>
-  </div>
+  
   <?php
 }
 ?>
@@ -37,6 +35,7 @@ if(isset($_SESSION['err'])){
 
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="css/style1.css">
 

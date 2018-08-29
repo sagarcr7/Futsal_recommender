@@ -29,9 +29,12 @@ $row = mysqli_fetch_array($data);
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
 
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
@@ -247,7 +250,6 @@ $row = mysqli_fetch_array($data);
 
                     <div class="col-sm-6"><img src="team/<?php echo $row['T_image']; ?>" style="height: 540px; width: 100%;"/>
 
-                        <!--<img src="team/001.jpg"/"> -->
                     </div>
                     <div class="col-sm-6" style="text-align: left;">
                         <div class="name">
@@ -287,7 +289,29 @@ $row = mysqli_fetch_array($data);
 
     <section class="section-two" id="section-two">
 
-     
+     <style>
+
+
+            input[type=text] {
+                border: solid 1px #ccc;
+                padding: 9px 10px 9px 32px;
+                width: 100px;
+                
+                -webkit-border-radius: 10em;
+                -moz-border-radius: 10em;
+                border-radius: 10em;
+                
+
+            }
+            
+
+            input[type=text]:focus {
+                width: 200px;
+                border-color: #66CC75;
+            
+            }
+
+    </style>
         <div class="container" style="height: 50px; width: 100%; margin-top: 40px;">
             <header role="title-page" class="text-center">
 
@@ -320,9 +344,8 @@ $(document).ready(function(){
 </script>
 
      <center><div class="search-box" style="margin-top: 50px;">
-        
-        <input type="text"  name="t1" autocomplete="off" placeholder="Search Futsal...." />
-       
+    <i class="fa fa-search"> </i>
+        <input type="text"  name="t1" autocomplete="off"  placeholder="Search Futsal...." />
        
         <div class="result" style="z-index: 1000;"></div>
     </div></center>
@@ -340,7 +363,7 @@ $(document).ready(function(){
 
                 $futsal_lists=mysqli_query($conn, "select * from rates");
                 $matrix=array();
-                $teamss = array();
+                $teams = array();
 
                 while ($futsal_list = mysqli_fetch_array($futsal_lists))
                 {
@@ -362,6 +385,7 @@ $(document).ready(function(){
                  ?>
 
             </div>
+            
 
     </div>
 
@@ -469,8 +493,8 @@ $(document).ready(function(){
     </script>
 
     <script src="js/main.js" type="text/javascript"></script>
-
- 
+    
+    <script src="js/futsal.js" type="text/javascript"></script>
 
 	<script src="js/maps.js" type="text/javascript"></script>
 

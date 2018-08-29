@@ -63,7 +63,7 @@ $(document).ready(function(){
         if(inputVal.length){
             $.get("backend-search.php", {term: inputVal}).done(function(data){
                 // Display the returned data in browser
-                resultDropdown.html(data);
+                
             });
         } else{
             resultDropdown.empty();

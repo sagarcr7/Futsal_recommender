@@ -10,15 +10,18 @@ if($conn === false){
  
 // Escape user inputs for security
 $term = mysqli_real_escape_string($conn, $_REQUEST['term']);
+$output = '';
  
 if(isset($term)){
     // Attempt select query execution
     $sql = "SELECT * FROM futsal WHERE F_name LIKE '" . $term . "%'";
     if($result = mysqli_query($conn, $sql)){
         if(mysqli_num_rows($result) > 0){
+            echo "Name &nbsp; &nbsp; Contact &nbsp; &nbsp; Address";
             while($row = mysqli_fetch_array($result))
             {
-                echo "<p>" . $row['F_name'] . "</p>";
+                
+                echo "<p>" . $row['F_name'] . "&nbsp;". "&nbsp;". $row['F_phnum'] .  "&nbsp;". "&nbsp;". $row['F_location'] ."</p>";
             }
             // Close result set
             mysqli_free_result($result);
