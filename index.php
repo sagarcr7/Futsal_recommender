@@ -27,7 +27,7 @@ if(isset($_SESSION['err'])){
 
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
-    <title>Booksal</title>
+    <title>Footsal</title>
 
     
 

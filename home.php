@@ -38,7 +38,7 @@ $row = mysqli_fetch_array($data);
 
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
-    <title>Booksal</title>
+    <title>Footsal</title>
     <style type="text/css">
         .hide{
             position: absolute;
@@ -172,7 +172,7 @@ $row = mysqli_fetch_array($data);
 
                                     <li><a href="#section-one" title="Overview">My Team</a></li>
 
-                                    <li><a href="#section-two" title="Find futsal">Book Futsal</a></li>
+                                    <li><a href="#section-two" title="Find futsal">Find Futsal</a></li>
 
                                     <li><a href="#section-three" title="Contact">Contact</a></li>          
 
