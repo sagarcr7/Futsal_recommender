@@ -11,6 +11,11 @@ $conn = mysqli_connect("localhost", "root", "", "futsaldb");
   $location=mysqli_real_escape_string($conn, $_POST['location']);
   $email=mysqli_real_escape_string($conn, $_POST['email']); 
   $phnum=mysqli_real_escape_string($conn, $_POST['phnum']);
+  $check = getimagesize($_FILES["image"]["tmp_name"]);
+  
+  if($check !== false){
+      $image = $_FILES['image']['tmp_name'];
+      $imgContent = addslashes(file_get_contents($image));
 
     if($password!=$password2){
     $_SESSION['message']="The two passwords do not match";   
@@ -28,15 +33,16 @@ $conn = mysqli_connect("localhost", "root", "", "futsaldb");
      {      
      //Create User
             $password = md5($password);
-            $sql="INSERT INTO team(T_id,T_name,T_pw,T_location,T_email,T_phnum) VALUES (NULL,'$teamname','$password','$location','$email','$phnum')";  
+            $sql="INSERT INTO team(T_id,T_name,T_pw,T_location,T_email,T_phnum, T_image) VALUES (NULL,'$teamname','$password','$location','$email','$phnum', '$imgcontent')";  
             $insert = mysqli_query($conn, $sql);
             if(!$insert){
-              header("location: index.php");
+              header("location: index.php#section-two");
             }
             else{
               $_SESSION['name'] = $teamname;
               header("location:home.php");
             }
     }
+  }
      $conn->close();
 ?>

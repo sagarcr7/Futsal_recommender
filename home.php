@@ -4,7 +4,6 @@ if(!isset($_SESSION['name']) || $_SESSION['name']==""){
    header("Location: index.php#section-two");
    exit();
 }
-
 include('recommend.php');
 $conn = mysqli_connect("localhost", "root", "", "futsaldb");
 
@@ -13,8 +12,7 @@ $q = "SELECT * from team where T_name='$name'";
 $data = mysqli_query($conn, $q);
 
 $row = mysqli_fetch_array($data);
-
-
+$_SESSION['t_id'] = $row['T_id']; 
 ?>
 
 <!DOCTYPE html>
@@ -35,8 +33,11 @@ $row = mysqli_fetch_array($data);
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
-
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="css/external.css" />
+    <script type="text/javascript" src="js/external.js"></script>
+
+    <link href="css/css.css" rel="stylesheet" type="text/css">
 
     <title>Footsal</title>
     <style type="text/css">
@@ -174,7 +175,9 @@ $row = mysqli_fetch_array($data);
 
                                     <li><a href="#section-two" title="Find futsal">Find Futsal</a></li>
 
-                                    <li><a href="#section-three" title="Contact">Contact</a></li>          
+                                    <li><a href="#section-three" title="Arenas">Arenas</a></li>    
+
+                                    <li><a href="#section-four" title="contact">Contact</a></li>       
 
                                 </ul>
 
@@ -357,7 +360,7 @@ $(document).ready(function(){
                         <h4>Recommendation For You</h4>
                     </header>
 
-        <div class ="recommendations" style=" margin-top: 40px; margin-left: 120px;">
+        <div class ="recommendations" style=" margin-top: 40px; ">
 
         <?php
 
@@ -401,9 +404,113 @@ $(document).ready(function(){
             
 
             <!-- section-three -->
-
-
             <section class="section-three" id="section-three">
+
+            	<div class="container">
+
+                	 <header role="title-page" class="text-center">
+
+                        <h4>Futsal List</h4>
+
+                    </header> 
+                        
+<style>
+
+
+hr {
+  margin: 20px;
+  border: none;
+  border-bottom: thin solid rgba(255,255,255,.1);
+}
+
+
+h1 span {
+  font-weight: 300;
+  color: #Fd4;
+}
+
+div.stars {
+  width: 270px;
+  display: inline-block;
+}
+
+input.star { display: none; }
+
+label.star {
+  float: right;
+  padding: 10px;
+  font-size: 36px;
+  color: #444;
+  transition: all .2s;
+}
+
+input.star:checked ~ label.star:before {
+  content: '\f005';
+  color: #FD4;
+  transition: all .25s;
+}
+
+input.star-5:checked ~ label.star:before {
+  color: #FE7;
+  text-shadow: 0 0 20px #952;
+}
+
+input.star-1:checked ~ label.star:before { color: #F62; }
+
+label.star:hover { transform: rotate(-15deg) scale(1.3); }
+
+label.star:before {
+  content: '\f006';
+  font-family: fontawesome;
+}
+</style>
+
+<div class="row">
+    	<?php 
+    	$data = mysqli_query($conn, "select * from futsal");
+    	while($result = mysqli_fetch_array($data)){
+    	 ?>
+        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12" style="margin-top: 10px;">
+        	<div ><img src="team/<?php echo $result['F_image']; ?>" style="width: 100%; height: 100%;"/></div>
+          <div ><h1><?php echo $result['F_name']; ?><br><?php echo $result['F_location']; ?></h1>
+          <div class="cont" style="background: none; border: none;">
+  <div class="stars">
+    
+    <form action="server2.php?id=<?php echo $result['F_id']; ?>" method="post">
+      <input class="star star-5" id="star-5-<?php echo $result['F_id']; ?>" type="radio" name="star" value="5"/>
+      <label class="star star-5" for="star-5-<?php echo $result['F_id']; ?>"></label>
+      <input class="star star-4" id="star-4-<?php echo $result['F_id']; ?>" type="radio" name="star" value="4" />
+      <label class="star star-4" for="star-4-<?php echo $result['F_id']; ?>"></label>
+      <input class="star star-3" id="star-3-<?php echo $result['F_id']; ?>" type="radio" name="star" value="3" />
+      <label class="star star-3" for="star-3-<?php echo $result['F_id']; ?>"></label>
+      <input class="star star-2" id="star-2-<?php echo $result['F_id']; ?>" type="radio" name="star" value="2" />
+      <label class="star star-2" for="star-2-<?php echo $result['F_id']; ?>"></label>
+      <input class="star star-1" id="star-1-<?php echo $result['F_id']; ?>" type="radio" name="star" value="1" />
+      <label class="star star-1" for="star-1-<?php echo $result['F_id']; ?>"></label>
+      
+      <input type="submit" name="" value="Rate This Futsal" class="btn btn-lg">
+    </form>
+    
+  </div>
+
+        </div>
+        
+      </div> 
+
+</div>
+<?php  } ?>
+ <!--carousel slide-->
+ </div><!-- /row-->
+ </div>
+
+
+            </section>
+
+                  <!-- section-three -->
+
+                    <!-- section-four -->
+
+            <section class="section-four" id="section-four">
 
             	<div class="container">
 
@@ -411,7 +518,7 @@ $(document).ready(function(){
 
                         <h4>Get in touch</h4>
 
-                        <h2>Have any questions? Our team will be happy to<br/>answer your questionss.</h2>
+                        <h2>Have any questions? Our team will be happy to<br/>answer your questions.</h2>
 
                     </header>
 
@@ -453,7 +560,7 @@ $(document).ready(function(){
 
             </section>
 
-            <!-- section-three-->
+            <!-- section-four-->
 
             
 
@@ -510,8 +617,9 @@ $(document).ready(function(){
 
 	<script src="js/html5shiv.min.js" type="text/javascript"></script>
 
-
-
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript"
+src="js/bootstrap.min.js"></script>
+ 
   </body>
-
 </html>

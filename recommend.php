@@ -79,7 +79,7 @@ function getRecommendation($matrix,$team)
 	$row= mysqli_fetch_array($rdt);
 	$i= $i+1;
 		?>
-	<div class="col-md-3" id="recommend" style="margin-bottom: 20px;">
+	<div class="col-md-2" id="recommend" style="margin-bottom: 20px; margin-left:80px;">
 	<h3><?php echo $row['F_name']; ?></h3>
 	<p><?php echo $row['F_location']?></p>
 	<a id="open-popup" href=""><img src="team/<?php echo $row['F_image']; ?>" style="width: 40%; height: 100px; opacity: 1" >
@@ -89,18 +89,27 @@ function getRecommendation($matrix,$team)
 <div class="popup" id="popup">
   <div class="popup__inner">
     <header class="popup__header">
-      <kbd>close</kbd><a href="#" class="popup__close"></a>  
+      	<a href="#" class="popup__close"></a>  
     </header>
-	<div class="col-sm-6"><img src="team/<?php echo $row['F_image']; ?>" style="height: 30px; width: 100%;"/>
+	<div class="col-sm-6"><img src="team/<?php echo $row['F_image']; ?>" style="height: 40px; width: 100%;"/>
         </div>
                     <div class="col-sm-6" style="text-align: left;">
-                        <div class="name">
-                        <p style="font-size:20px; font-weight: bold;"><?php echo $row['F_name']; ?></p> </div>
+                        <div class="name">Name
+                        <p style="font-size:15px; font-weight: bold;"><?php echo $row['F_name']; ?></p> </div>
 
-                        <div class="f_entity">
+                        <div class="f_entity">Address
                         <p><?php echo $row['F_location']; ?></p></div>
-                        <div class="f_entity">
+                        <div class="f_entity"> Contact
                         <p><?php echo $row['F_phnum']; ?></p></div>
+							<script>
+									$("body").click(function(event ){
+									var $target = $(event.target);
+									if(!$target.parents().is(".popup") && !$target.is(".popup")){
+										$("body").find(".popup").hide();
+									}
+								});
+								</script>
+
                         <style>
                         .f_entity{
                             height: 30px;
@@ -124,22 +133,20 @@ function getRecommendation($matrix,$team)
 	<script src="js/futsal.js"></script>
 	<style>
 
-	////////////
-// POPUP //
-///////////
-.popup { // gray area  
+
+.popup {  
   position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: rgba(50, 50, 50, 0.5);
+  width: 50%;
+  height: 50%;
+  top: 200px;
+  left: 400px;
   display: none;
 }
 .popup__inner {
   overflow-y: scroll;
+  font-color: 
   max-height: 100%;
-  background-color: #f2f2f2;
+  background-color: #F1DCEB;
   width: 90%;
   max-width: 30em;
   margin: 3em auto 0;
@@ -149,7 +156,7 @@ function getRecommendation($matrix,$team)
 }
 
 .popup__header {
-  background-color: lightgray;
+  background-color:lightblue;
   padding: 0.25em 0.75em;
   margin-bottom: 2em;
   text-align: right;
